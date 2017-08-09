@@ -1,9 +1,7 @@
 package lab.s2jh.support.data;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import javassist.ClassClassPath;
 import javassist.ClassPool;
 import javassist.CtClass;
@@ -16,28 +14,15 @@ import lab.s2jh.core.security.AuthUserDetails;
 import lab.s2jh.core.util.DateUtils;
 import lab.s2jh.core.util.Exceptions;
 import lab.s2jh.core.util.UidUtils;
-import lab.s2jh.module.auth.entity.Department;
-import lab.s2jh.module.auth.entity.Privilege;
-import lab.s2jh.module.auth.entity.Role;
-import lab.s2jh.module.auth.entity.User;
+import lab.s2jh.module.auth.entity.*;
 import lab.s2jh.module.auth.entity.User.AuthTypeEnum;
-import lab.s2jh.module.auth.entity.UserR2Role;
 import lab.s2jh.module.auth.service.DepartmentService;
 import lab.s2jh.module.auth.service.PrivilegeService;
 import lab.s2jh.module.auth.service.RoleService;
 import lab.s2jh.module.auth.service.UserService;
-import lab.s2jh.module.sys.entity.ConfigProperty;
-import lab.s2jh.module.sys.entity.DataDict;
-import lab.s2jh.module.sys.entity.Menu;
-import lab.s2jh.module.sys.entity.NotifyMessage;
-import lab.s2jh.module.sys.entity.UserMessage;
-import lab.s2jh.module.sys.service.ConfigPropertyService;
-import lab.s2jh.module.sys.service.DataDictService;
-import lab.s2jh.module.sys.service.MenuService;
-import lab.s2jh.module.sys.service.NotifyMessageService;
-import lab.s2jh.module.sys.service.UserMessageService;
+import lab.s2jh.module.sys.entity.*;
+import lab.s2jh.module.sys.service.*;
 import lab.s2jh.support.service.DynamicConfigService;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
@@ -52,8 +37,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 /**
  * 数据库基础数据初始化处理器
@@ -236,6 +222,35 @@ public class BasicDatabaseDataInitializeProcessor extends DatabaseDataInitialize
             dataDictService.save(item);
         }
 
+        //数据字典项初始化
+        if (dataDictService.findByProperty("primaryKey", GlobalConstant.DataDict_Sex_Type) == null) {
+            DataDict entity = new DataDict();
+            entity.setPrimaryKey(GlobalConstant.DataDict_Sex_Type);
+            entity.setPrimaryValue("性别");
+            dataDictService.save(entity);
+
+            DataDict item = new DataDict();
+            item.setPrimaryKey("男");
+            item.setPrimaryValue("男");
+            item.setSecondaryValue("#FF8524");
+            item.setParent(entity);
+            dataDictService.save(item);
+
+            item = new DataDict();
+            item.setPrimaryKey("女");
+            item.setPrimaryValue("女");
+            item.setSecondaryValue("#FF8524");
+            item.setParent(entity);
+            dataDictService.save(item);
+
+            item = new DataDict();
+            item.setPrimaryKey("保密");
+            item.setPrimaryValue("保密");
+            item.setSecondaryValue("#FF8524");
+            item.setParent(entity);
+            dataDictService.save(item);
+        }
+
         //初始化演示通知消息
         if (isEmptyTable(NotifyMessage.class)) {
             NotifyMessage entity = new NotifyMessage();
@@ -271,6 +286,7 @@ public class BasicDatabaseDataInitializeProcessor extends DatabaseDataInitialize
     /**
      * 基于Controller的@MenuData注解重建菜单基础数据
      */
+
     private void rebuildMenuDataFromControllerAnnotation() {
         try {
             logger.debug("Start to rebuildMenuDataFromControllerAnnotation...");

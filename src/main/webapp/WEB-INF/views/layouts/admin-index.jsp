@@ -228,7 +228,7 @@
 	<!-- BEGIN FOOTER -->
 	<div class="footer">
 		<div class="footer-inner">
-			&copy; S2JH4Net 2014
+			&copy; 学科竞赛 2017
 			<c:if test="${cfg.dev_mode}">
 				<span>V${buildVersion} [${buildTimetamp}]</span>
 			</c:if>

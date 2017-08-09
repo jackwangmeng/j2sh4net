@@ -138,7 +138,6 @@ public class UserService extends BaseService<User, Long> {
 
         if (entity.isNew()) {
             userDao.save(entity);
-
             UserExt userExt = new UserExt();
             userExt.setId(entity.getId());
             userExt.setSignupTime(DateUtils.currentDate());
@@ -146,7 +145,6 @@ public class UserService extends BaseService<User, Long> {
         } else {
             userDao.save(entity);
         }
-
         return entity;
     }
 

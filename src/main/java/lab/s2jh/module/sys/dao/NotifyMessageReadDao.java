@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.QueryHint;
 
+import com.sun.prism.impl.Disposer;
+import jxl.read.biff.Record;
 import lab.s2jh.core.dao.jpa.BaseDao;
 import lab.s2jh.module.auth.entity.User;
 import lab.s2jh.module.sys.entity.NotifyMessage;
@@ -27,4 +29,5 @@ public interface NotifyMessageReadDao extends BaseDao<NotifyMessageRead, Long> {
     @Query("select count(nm) from NotifyMessageRead nm where nm.notifyMessage.id=:notifyMessageId")
     @QueryHints({ @QueryHint(name = org.hibernate.jpa.QueryHints.HINT_CACHEABLE, value = "true") })
     Integer countByNotifyMessage(@Param("notifyMessageId") Long notifyMessageId);
+
 }

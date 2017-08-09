@@ -7,6 +7,12 @@
 <link href="${ctx}/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <!-- END GLOBAL MANDATORY STYLES -->
 
+
+<%--bwizard--%>
+<link href="${ctx}/assets/admin/css/bwizard.min.css" rel="stylesheet"/>
+<script src="${ctx}/assets/admin/js/bwizard.min.js" type="text/javascript"></script>
+
+
 <!-- BEGIN THEME STYLES -->
 <link href="${ctx}/assets/admin/css/style-metronic.css" rel="stylesheet" type="text/css" />
 <link href="${ctx}/assets/admin/css/style.css" rel="stylesheet" type="text/css" />
@@ -16,6 +22,8 @@
 <link href="${ctx}/assets/admin/css/themes/light.css" rel="stylesheet" type="text/css" id="style_color" />
 <link href="${ctx}/assets/admin/css/pages/search.css" rel="stylesheet" type="text/css" />
 <link href="${ctx}/assets/plugins/data-tables/DT_bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/assets/admin/css/base.css" rel="stylesheet" type="text/css"/>
+<link href="${ctx}/assets/admin/css/home.css" rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->
 
 <link rel="shortcut icon" href="${ctx}/assets/img/favicon.ico" />

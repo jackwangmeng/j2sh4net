@@ -1,10 +1,9 @@
 package lab.s2jh.core.cons;
 
-import java.util.Map;
-
+import com.google.common.collect.Maps;
 import lab.s2jh.core.annotation.MetaData;
 
-import com.google.common.collect.Maps;
+import java.util.Map;
 
 public class GlobalConstant {
 
@@ -38,5 +37,8 @@ public class GlobalConstant {
 
     @MetaData("数据字典:消息类型")
     public final static String DataDict_Message_Type = "DataDict_Message_Type";
+
+    @MetaData("数据字典:性别类型")
+    public final static String DataDict_Sex_Type = "DataDict_Sex_Type";
 
 }
